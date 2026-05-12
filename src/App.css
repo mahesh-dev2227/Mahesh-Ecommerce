@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap');
 
 * {
   box-sizing: border-box;
@@ -67,4 +67,482 @@ select:focus {
 ::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 4px;
+} */
+
+
+
+/* =========================================
+   App.css — Mahi Studio Responsive Styles
+   ========================================= */
+
+/* ---------- Google Fonts Import ---------- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap');
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: #f8f6f2;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f0ede6; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+/* ---------- Keyframe Animations ---------- */
+@keyframes fadeup {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes slidein {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Product Card Animations ---------- */
+.product-card {
+  animation: fadein 0.45s ease both;
+}
+
+/* ---------- Image Hover Zoom ---------- */
+.product-card:hover .card-img {
+  transform: scale(1.06);
+}
+
+/* ---------- Category Button Hover ---------- */
+.cat-btn:hover {
+  background: #f4f0ea !important;
+  border-color: #bbb !important;
+}
+
+/* ---------- Add to Cart Button Hover ---------- */
+.add-btn:hover {
+  background: #1a1a1a !important;
+  color: #e8d5b7 !important;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ==========================================
+
+   Breakpoints used:
+   - xs: < 480px   (small phones)
+   - sm: < 640px   (phones)
+   - md: < 768px   (large phones / small tablets)
+   - lg: < 1024px  (tablets / small laptops)
+   - xl: ≥ 1024px  (desktops — default styles in JSX)
+   ========================================== */
+
+
+/* ==========================================
+   LARGE TABLETS & SMALL LAPTOPS  (< 1024px)
+   ========================================== */
+@media (max-width: 1023px) {
+
+  /* Header search bar narrower */
+  header input[type="search"],
+  header input[placeholder="Search products..."] {
+    width: 160px !important;
+  }
+
+  /* Hero padding tighter */
+  .hero-section,
+  div[style*="padding: 72px 32px"] {
+    padding: 56px 24px !important;
+  }
+
+  /* Products grid: max 3 columns */
+  #products > div:last-child,
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  }
+
+  /* Cart drawer: slightly narrower */
+  div[style*="min(480px, 100vw)"] {
+    width: min(420px, 100vw) !important;
+  }
+}
+
+
+/* ==========================================
+   TABLETS  (< 768px)
+   ========================================== */
+@media (max-width: 767px) {
+
+  /* --- HEADER --- */
+  header {
+    padding: 0 16px !important;
+    height: 56px !important;
+    gap: 8px;
+  }
+
+  /* Hide search on tablet — show icon only */
+  header input[placeholder="Search products..."] {
+    width: 140px !important;
+    font-size: 12px !important;
+  }
+
+  header span[style*="fontSize: \"22px\""],
+  header span[style*='fontSize: "22px"'] {
+    font-size: 18px !important;
+  }
+
+  header button[style*="20px 20px"] {
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+  }
+
+  /* --- HERO --- */
+  div[style*="padding: 72px 32px"],
+  div[style*="padding: '72px 32px'"] {
+    padding: 48px 20px !important;
+  }
+
+  /* Hero title: clamp handles it, but set safe floor */
+  h1 {
+    font-size: clamp(28px, 8vw, 56px) !important;
+  }
+
+  /* --- FILTERS BAR --- */
+  div[style*="padding: \"16px 32px\""],
+  div[style*="borderBottom: \"1px solid #eee\""] {
+    padding: 12px 16px !important;
+    gap: 8px !important;
+  }
+
+  /* Sort selector moves to new row on small screens */
+  div[style*="marginLeft: \"auto\""] {
+    margin-left: 0 !important;
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  /* --- PRODUCTS SECTION --- */
+  #products {
+    padding: 24px 16px !important;
+  }
+
+  /* 2 columns on tablet */
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  /* Product card image height */
+  div[style*="height: \"220px\""] {
+    height: 180px !important;
+  }
+
+  /* Card padding */
+  div[style*="padding: \"20px\""] {
+    padding: 14px !important;
+  }
+
+  /* --- FOOTER --- */
+  footer div[style*="gridTemplateColumns"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+    padding: 40px 20px 32px !important;
+  }
+
+  footer div[style*="padding: \"56px 32px 40px\""] {
+    padding: 40px 20px 32px !important;
+  }
+
+  footer div[style*="padding: \"24px 32px\""] {
+    padding: 20px 16px !important;
+    gap: 20px !important;
+  }
+
+  footer div[style*="padding: \"20px 32px\""] {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 16px 20px !important;
+    text-align: center;
+  }
+
+  /* --- CART DRAWER --- */
+  div[style*="min(480px, 100vw)"] {
+    width: 100vw !important;
+  }
+
+  div[style*="padding: \"24px\""][style*="borderBottom"] {
+    padding: 18px 16px !important;
+  }
+
+  div[style*="padding: \"24px\""] {
+    padding: 16px !important;
+  }
+
+  div[style*="padding: \"20px 24px\""] {
+    padding: 16px !important;
+  }
+}
+
+
+/* ==========================================
+   PHONES  (< 640px)
+   ========================================== */
+@media (max-width: 639px) {
+
+  /* --- HEADER: stack search below on very small --- */
+  header {
+    flex-wrap: wrap;
+    height: auto !important;
+    padding: 10px 16px !important;
+    gap: 10px;
+  }
+
+  /* Logo row */
+  header > div:first-child {
+    flex: 1;
+  }
+
+  /* Action buttons */
+  header > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Compact search */
+  header input[placeholder="Search products..."] {
+    width: 120px !important;
+    font-size: 12px !important;
+    padding: 7px 12px 7px 30px !important;
+  }
+
+  header button[title="Wishlist"] {
+    font-size: 18px !important;
+    padding: 4px 6px !important;
+  }
+
+  /* Cart button: icon only on small screens */
+  header button[style*="Cart"] span:not([style*="background"]) {
+    display: none;
+  }
+
+  /* --- HERO --- */
+  div[style*="padding: 72px"] {
+    padding: 40px 16px !important;
+  }
+
+  div[style*="padding: 56px"] {
+    padding: 40px 16px !important;
+  }
+
+  p[style*="letterSpacing: \"4px\""] {
+    font-size: 10px !important;
+  }
+
+  p[style*="maxWidth: \"400px\""] {
+    font-size: 14px !important;
+  }
+
+  /* CTA button */
+  button[style*="padding: \"14px 36px\""] {
+    padding: 12px 28px !important;
+    font-size: 13px !important;
+  }
+
+  /* --- FILTERS --- */
+  div[style*="overflowX: \"auto\""] {
+    padding: 10px 12px !important;
+    gap: 6px !important;
+  }
+
+  button.cat-btn {
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+  }
+
+  /* --- PRODUCTS --- */
+  #products {
+    padding: 20px 12px !important;
+  }
+
+  /* Single column on small phones */
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Product image taller when full-width */
+  div[style*="height: \"220px\""] {
+    height: 240px !important;
+  }
+
+  /* Section heading */
+  h2[style*="fontSize: \"24px\""] {
+    font-size: 20px !important;
+  }
+
+  /* --- FOOTER --- */
+  footer div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding: 32px 16px !important;
+  }
+
+  footer div[style*="padding: \"24px 32px\""] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+
+  /* Trust badges: 2 per row */
+  footer div[style*="padding: \"24px 32px\""] > div {
+    width: calc(50% - 8px);
+  }
+
+  footer div[style*="padding: \"20px 32px\""] {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 16px !important;
+    gap: 8px !important;
+  }
+
+  footer div[style*="gap: \"20px\""] {
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+
+  /* Newsletter email row */
+  footer div[style*="gap: \"8px\""] {
+    flex-direction: column !important;
+  }
+
+  footer div[style*="gap: \"8px\""] button {
+    width: 100% !important;
+  }
+
+  /* --- CART DRAWER --- */
+  div[style*="min(480px"] {
+    width: 100vw !important;
+  }
+
+  /* Cart item layout: tighter */
+  div[style*="gap: \"14px\""][style*="padding: \"16px\""] {
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+
+  div[style*="width: \"64px\""][style*="height: \"64px\""] {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  /* Checkout form inputs full width */
+  input[style*="width: \"100%\""] {
+    font-size: 16px !important; /* prevents iOS zoom */
+  }
+
+  /* Place order buttons */
+  div[style*="gap: \"12px\""] > button {
+    flex: unset !important;
+  }
+}
+
+
+/* ==========================================
+   EXTRA SMALL PHONES  (< 380px)
+   ========================================== */
+@media (max-width: 379px) {
+
+  header {
+    padding: 8px 12px !important;
+  }
+
+  header input[placeholder="Search products..."] {
+    width: 100px !important;
+  }
+
+  button.cat-btn {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+  }
+
+  #products {
+    padding: 16px 10px !important;
+  }
+
+  div[style*="gridTemplateColumns"] {
+    gap: 12px !important;
+  }
+
+  /* Cart drawer action buttons stack */
+  div[style*="gap: \"12px\""] {
+    flex-direction: column !important;
+  }
+
+  div[style*="gap: \"12px\""] > button {
+    width: 100% !important;
+  }
+}
+
+
+/* ==========================================
+   TOUCH DEVICE ENHANCEMENTS
+   ========================================== */
+@media (hover: none) {
+  /* Remove hover effects on touch; rely on :active instead */
+  .product-card:hover .card-img {
+    transform: none;
+  }
+
+  .product-card:hover {
+    box-shadow: none !important;
+  }
+
+  .add-btn:active {
+    background: #1a1a1a !important;
+    color: #e8d5b7 !important;
+  }
+
+  .cat-btn:active {
+    background: #f4f0ea !important;
+  }
+
+  /* Larger tap targets */
+  button {
+    min-height: 44px;
+  }
+
+  header button[title="Wishlist"] {
+    min-width: 44px;
+  }
+}
+
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+@media print {
+  header, footer, .cart-drawer, .toast { display: none !important; }
+  body { background: #fff; }
+  .product-card { break-inside: avoid; }
 }
